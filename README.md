@@ -6,6 +6,8 @@ that integrates `Hypothesis library <https://pypi.org/project/hypothesis/>`_ for
 testing with `icontract library <https://pypi.org/project/icontract/>`_ for design-by-contract
 in Python.
 
+![Animated GIF demonstrating the plug-in](screen-recording.gif)
+
 ## Usage
 
 Move the cursor to the function that you want to test or select a range of

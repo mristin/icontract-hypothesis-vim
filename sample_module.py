@@ -1,50 +1,18 @@
 """Provide a valid module for testing pyicontract-hypothesis."""
 
-from tests.pyicontract_hypothesis.samples.sample_library import square_greater_than_zero
+import math
+import re
 
 import icontract
 
-SOME_FUNC_CALLS = 0
-
-
 @icontract.require(lambda x: x > 0)
-def some_func(x: int) -> None:
-    global SOME_FUNC_CALLS
-    SOME_FUNC_CALLS += 1
+def some_func(x: float) -> float:
+    return math.sqrt(x)
 
-
-ANOTHER_FUNC_CALLS = 0
-
-
-@icontract.require(lambda x: x > 0)
-@icontract.require(
-    lambda x: square_greater_than_zero(x), "dummy precondition to test filtering"
-)
-def another_func(x: int) -> None:
-    global ANOTHER_FUNC_CALLS
-    ANOTHER_FUNC_CALLS += 1
-    assert False
-
-
-@icontract.require(lambda x, y: x < y, "Test multi-argument contracts")
-def yet_another_func(x: int, y: int) -> None:
-    pass
-
-# pyicontract-hypothesis: disable
-def expected_to_be_ignored(x: int) -> None:
-    pass
-
-
-# pyicontract-hypothesis: enable
-
-
-# Class is ignored as well.
-class A:
-    @icontract.require(lambda x: x > 0)
-    def __init__(self, x: int) -> None:
-        self.x = x
-
-    @icontract.require(lambda y: y > 0)
-    @icontract.ensure(lambda result: result > 0)
-    def some_method(self, y: int) -> int:
-        return self.x + y
+@icontract.require(lambda s: re.match('^prefix.*suffix$', s))
+@icontract.ensure(lambda result: result.startswith('preFIX'))
+@icontract.ensure(lambda result: result.endswith('sufFIX'))
+def another_func(s: str) -> str:
+    s = 'PreFIX' + s[len('prefix'):]
+    # We forgot to replace 'suffix' with 'sufFIX'
+    return s
