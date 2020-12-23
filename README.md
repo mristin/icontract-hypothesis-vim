@@ -1,9 +1,9 @@
 # icontract-hypothesis-vim
 
 Icontract-hypothesis-vim is a Vim plug-in for 
-`icontract-hypothesis <https://pypi.org/project/icontract-hypothesis/>`_, a tool 
-that integrates `Hypothesis library <https://pypi.org/project/hypothesis/>`_ for property-based 
-testing with `icontract library <https://pypi.org/project/icontract/>`_ for design-by-contract
+[icontract-hypothesis](https://pypi.org/project/icontract-hypothesis/), a tool 
+that integrates [Hypothesis library](https://pypi.org/project/hypothesis/) for property-based 
+testing with [icontract library](https://pypi.org/project/icontract/) for design-by-contract
 in Python.
 
 ![Animated GIF demonstrating the plug-in](screen-recording.gif)
